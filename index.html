@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <title>Pixel Flap</title>
+
+  <!-- Official Telegram SDK: must load BEFORE game.js -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+  <!-- Pixel font (falls back to monospace if it can't load) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-state="ready">
+
+  <div id="loading">LOADING...</div>
+
+  <div id="wrap">
+    <div id="stage">
+      <!-- Low-resolution canvas: 180x320 game pixels, shown at 360x640 -->
+      <canvas id="c" width="180" height="320"></canvas>
+
+      <!-- HUD -->
+      <div id="player"></div>
+      <div id="score">0</div>
+      <button id="btn-sound" aria-label="Toggle sound">&#9834;</button>
+
+      <!-- Start menu -->
+      <div class="overlay" id="menu">
+        <div class="card">
+          <h1>PIXEL<br>FLAP</h1>
+          <p>TAP TO FLAP.<br>DODGE THE PIPES!</p>
+          <div class="label">BEST</div>
+          <div class="big" id="menu-best">0</div>
+          <div class="row">
+            <button class="btn" id="btn-play">PLAY</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Game over -->
+      <div class="overlay" id="gameover">
+        <div class="card">
+          <h1 id="go-title">GAME OVER</h1>
+          <div class="label">SCORE</div>
+          <div class="big" id="go-score">0</div>
+          <div class="badge" id="go-medal"></div>
+          <div class="label">BEST <span id="go-best">0</span></div>
+          <div class="row">
+            <button class="btn" id="btn-retry">RETRY</button>
+            <button class="btn alt" id="btn-share">SHARE</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Paused -->
+      <div class="overlay" id="paused">
+        <div class="card">
+          <h1>PAUSED</h1>
+          <div class="row"><button class="btn" id="btn-resume">RESUME</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
